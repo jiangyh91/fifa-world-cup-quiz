@@ -1,0 +1,37 @@
+{
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "editor.formatOnSave": true,
+
+  "typescriptHero.imports.organizeOnSave": true,
+  "typescriptHero.imports.removeTrailingIndex": true,
+  "typescriptHero.imports.multiLineWrapThreshold": 160,
+  "typescriptHero.imports.grouping": [
+    {
+      "identifier": "/^(react|yup|classnames|socket.io-client)$/",
+      "order": "asc"
+    },
+    {
+      "identifier": "/^(react-|redux)/",
+      "order": "asc"
+    },
+    "Modules", // Example: import ... from 'vscode',
+    {
+      "identifier": "/^(actions|reducers)/",
+      "order": "asc"
+    },
+    {
+      "identifier": "/^material-ui/",
+      "order": "asc"
+    },
+    {
+      "identifier": "/^(components|models|src/components|src/models)/",
+      "order": "asc"
+    },
+    {
+      "identifier": "/^(containers|src/containers)/",
+      "order": "asc"
+    },
+    "Workspace", // Example: import ... from '../server';
+    "Plains" // Example: import 'reflect-metadata;
+  ]
+}
