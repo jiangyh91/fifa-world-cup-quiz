@@ -1,12 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Route, Switch, BrowserRouter } from "react-router-dom";
-import Home from "./home";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import FiFaQuiz from './fifa-quiz';
 
 export default () => (
   <BrowserRouter basename="/build">
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={FiFaQuiz} />
     </Switch>
   </BrowserRouter>
 );
