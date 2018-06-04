@@ -24,6 +24,9 @@ class HomePage extends React.PureComponent<Props> {
     const { classes } = this.props;
     return (
       <Screen background flex>
+        <img src={star} className={classes.starImage1} alt="star" />
+        <img src={star} className={classes.starImage2} alt="star" />
+        <img src={star} className={classes.starImage3} alt="star" />
         <img src={logo} className={classes.logoImage} alt="logo" />
         <Paper className={classes.paper} elevation={6}>
           <img src={tada} className={classes.tadaImage} alt="tada" />
@@ -37,9 +40,6 @@ class HomePage extends React.PureComponent<Props> {
         >
           立即开启
         </Button>
-        <img src={star} className={classes.starImage1} alt="star" />
-        <img src={star} className={classes.starImage2} alt="star" />
-        <img src={star} className={classes.starImage3} alt="star" />
       </Screen>
     );
   }

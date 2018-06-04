@@ -5,11 +5,12 @@ import { Overrides } from '@material-ui/core/styles/overrides';
 
 const typography: TypographyOptions = {
   // fontSize: 14,
-  // headline: {
-  //   fontSize: 32,
-  //   lineHeight: '32px',
-  //   fontWeight: 'bold'
-  // },
+  headline: {
+    // fontSize: 32,
+    // lineHeight: "32px",
+    fontWeight: "bold",
+    color: "rgb(254,28,28)"
+  }
   // title: {
   //   fontSize: 18,
   //   lineHeight: '22px',
@@ -61,7 +62,10 @@ const getOverrides = (theme: Theme): Overrides => {
     MuiButton: {
       root: {
         border: `3px solid ${theme.palette.common.white}`,
-        borderRadius: 10
+        borderRadius: 10,
+        fontSize: 20,
+        fontWeight: "bold",
+        fontStyle: "italic"
       }
     }
   };

@@ -1,13 +1,20 @@
 import { StyleRulesCallback, Theme } from '@material-ui/core/styles';
 
-export type ClassKeys = "screen" | "root" | "backgroundColor" | "flex";
+export type ClassKeys =
+  | "screen"
+  | "main"
+  | "backgroundColor"
+  | "flex"
+  | "footer";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   screen: {
     minHeight: "100%",
-    minWidth: 295
+    minWidth: 295,
+    position: "relative"
   },
-  root: {
+  main: {
+    width: "100%",
     maxWidth: 768,
     position: "relative"
   },
@@ -19,6 +26,12 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center"
+  },
+  footer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: 100
   }
 });
 

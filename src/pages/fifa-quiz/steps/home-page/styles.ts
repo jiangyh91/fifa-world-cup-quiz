@@ -12,18 +12,12 @@ export type ClassKeys =
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   button: {
-    margin: 20,
-    zIndex: 10,
-    display: "block",
-    fontSize: 20,
-    fontWeight: "bold",
-    fontStyle: "italic"
+    margin: 24
   },
   paper: {
     margin: 20,
     width: 250,
     height: 70,
-    zIndex: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",

@@ -9,7 +9,6 @@ import HomePage from './steps/home-page';
 import Intro from './steps/intro';
 import styles, { ClassKeys } from './styles';
 
-
 interface FiFaQuizProps {}
 
 type Props = FiFaQuizProps & WithStyles<ClassKeys> & RouteComponentProps<{}>;
@@ -19,7 +18,7 @@ class FiFaQuiz extends React.PureComponent<Props> {
     const { step } = queryString.parse(location.search);
     switch (step) {
       case "0":
-        return <Intro />;
+        return <Intro onNext={this.onNextClick} />;
       default:
         return <HomePage onNext={this.onNextClick} />;
     }
