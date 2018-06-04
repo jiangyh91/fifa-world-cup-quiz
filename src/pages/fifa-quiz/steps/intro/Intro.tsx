@@ -87,13 +87,13 @@ class Intro extends React.PureComponent<Props> {
             开始小组赛
           </Button>
         </Paper>
-        <img src={cupImage} className={classes.cupImage} alt="cupImage" />
+        <img src={cupImage} className={classes.cornerImage} alt="cupImage" />
       </Screen>
     );
   }
 
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    // this.props.onNext(event, 1);
+    this.props.onNext(event, 2);
   };
 }
 

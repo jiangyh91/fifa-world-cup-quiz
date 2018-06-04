@@ -1,35 +1,16 @@
 import { StyleRulesCallback, Theme } from '@material-ui/core/styles';
 
+import { sharedClassKeys, sharedStyles } from '../../styles';
+
 export type ClassKeys =
-  | "paper"
-  | "headline"
-  | "point"
+  | sharedClassKeys
   | "paragraph"
   | "border"
   | "bigFont"
-  | "smallFont"
-  | "red"
-  | "black"
-  | "button"
-  | "cupImage";
+  | "smallFont";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
-  paper: {
-    margin: "2px 24px",
-    padding: 12,
-    borderRadius: 8,
-    background: "rgba(124,127,125, 0.1)"
-  },
-  headline: {
-    textAlign: "center",
-    fontStyle: "italic"
-  },
-  point: {
-    margin: 0,
-    lineHeight: "26px",
-    fontWeight: "bold",
-    fontStyle: "italic"
-  },
+  ...sharedStyles(theme),
   paragraph: {
     marginTop: 12
   },
@@ -45,23 +26,6 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   smallFont: {
     fontSize: 14,
     lineHeight: "24px"
-  },
-  red: {
-    color: "rgb(254,28,28)"
-  },
-  black: {
-    color: theme.palette.common.black
-  },
-  button: {
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto"
-  },
-  cupImage: {
-    height: 140,
-    float: "right",
-    paddingBottom: 28,
-    paddingRight: 24
   }
 });
 

@@ -45,7 +45,7 @@ class HomePage extends React.PureComponent<Props> {
   }
 
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.props.onNext(event, 0);
+    this.props.onNext(event, 1);
   };
 }
 
