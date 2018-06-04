@@ -7,33 +7,31 @@ export type ClassKeys =
   | "descImage"
   | "tadaImage"
   | "starImage1"
-  | "starImage2";
+  | "starImage2"
+  | "starImage3";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   button: {
+    margin: 20,
+    zIndex: 10,
     display: "block",
-    margin: "50px auto 20px",
     fontSize: 20,
     fontWeight: "bold",
     fontStyle: "italic"
   },
   paper: {
+    margin: 20,
     width: 250,
     height: 70,
+    zIndex: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-around",
     borderRadius: "100%/100%",
-    boxSizing: "border-box",
-    marginTop: 50,
-    marginLeft: "auto",
-    marginRight: "auto",
     position: "relative"
   },
   logoImage: {
-    width: "100%",
-    padding: "40px 5% 0px",
-    boxSizing: "border-box"
+    width: "95%"
   },
   descImage: {
     width: 160
@@ -53,11 +51,18 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   },
   starImage2: {
     position: "absolute",
-    top: "69%",
+    top: "66%",
     left: "42%",
     width: "69%",
     transform: " rotate(-55deg)",
     opacity: 0.6
+  },
+  starImage3: {
+    position: "absolute",
+    top: "77%",
+    left: "3%",
+    width: "58%",
+    transform: " rotate(-55deg)"
   }
 });
 

@@ -1,16 +1,16 @@
-import * as React from "react";
-import "./FirstPage.css";
+import * as React from 'react';
 
-import Button from "@material-ui/core/Button";
-import logo from "./logo.svg";
-import styles, { ClassKeys } from "./styles";
+import { WithStyles, withStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
-import { withStyles, WithStyles } from "@material-ui/core";
+import logo from './logo.svg';
+import styles, { ClassKeys } from './styles';
+
+import './FirstPage.css';
 
 interface FirstPageProps {}
 
 type Props = FirstPageProps & WithStyles<ClassKeys>;
-
 class FirstPage extends React.PureComponent<Props> {
   public render() {
     return (

@@ -60,8 +60,6 @@ const getOverrides = (theme: Theme): Overrides => {
   const overrides: Overrides = {
     MuiButton: {
       root: {
-        paddingTop: 4,
-        paddingBottom: 4,
         border: `3px solid ${theme.palette.common.white}`,
         borderRadius: 10
       }
