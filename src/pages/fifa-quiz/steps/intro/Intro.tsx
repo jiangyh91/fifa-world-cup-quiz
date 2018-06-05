@@ -10,11 +10,7 @@ import cupImage from './images/cup.png';
 import styles, { ClassKeys } from './styles';
 
 interface IntroProps {
-  onNext(
-    event: React.SyntheticEvent<HTMLButtonElement>,
-    nextStepValue: number,
-    value: any
-  ): void;
+  onNext(nextStepValue: number, value: any): void;
 }
 
 type Props = IntroProps & WithStyles<ClassKeys>;
@@ -95,7 +91,7 @@ class Intro extends React.PureComponent<Props> {
   }
 
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.props.onNext(event, this.step, { start: true });
+    this.props.onNext(this.step, true);
   };
 }
 

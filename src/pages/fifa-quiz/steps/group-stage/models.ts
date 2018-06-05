@@ -106,5 +106,15 @@ export const flagMapping: { [key: string]: string } = {
 };
 
 export function getInitialGroupStageValues() {
-  return teamGroups.map(() => ["", ""]);
+  // return teamGroups.map(() => ["", ""]);
+  return [
+    ["俄罗斯", "沙特阿拉伯"],
+    ["伊朗", "葡萄牙"],
+    ["澳大利亚", "法国"],
+    ["阿根廷", "冰岛"],
+    ["巴西", "瑞士"],
+    ["德国", "墨西哥"],
+    ["比利时", "巴拿马"],
+    ["哥伦比亚", "波兰"]
+  ];
 }

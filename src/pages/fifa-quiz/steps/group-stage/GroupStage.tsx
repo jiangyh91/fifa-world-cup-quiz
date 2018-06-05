@@ -4,30 +4,26 @@ import * as React from 'react';
 import { Button, ButtonBase, Divider, ListSubheader, Paper, Typography, WithStyles, withStyles } from '@material-ui/core';
 import { dataAttribute } from 'src/utils/domHelper';
 
+import FlexLayout from 'src/components/flex-layout';
 import Screen from 'src/components/screen';
+import StepFlag from 'src/components/step-flag';
 
-import FlexLayout from '../../../../components/flex-layout';
-import StepFlag from '../../../../components/step-flag';
 import { resolveTeamValue } from './helpers';
 import tadaball from './images/tadaball.png';
 import { flagMapping, getInitialGroupStageValues, Group, teamGroups } from './models';
 import styles, { ClassKeys } from './styles';
 
-interface groupStageProps {
+interface GroupStageProps {
   values: Array<any>;
-  onNext(
-    event: React.SyntheticEvent<HTMLButtonElement>,
-    nextStepValue: number,
-    value: any
-  ): void;
+  onNext(nextStepValue: number, value?: any): void;
 }
 
-type Props = groupStageProps & WithStyles<ClassKeys>;
+type Props = GroupStageProps & WithStyles<ClassKeys>;
 
 interface States {
   groupStageValues: Array<Array<string>>;
 }
-class groupStage extends React.PureComponent<Props, States> {
+class GroupStage extends React.PureComponent<Props, States> {
   private step = 2;
   constructor(props: Props) {
     super(props);
@@ -35,6 +31,21 @@ class groupStage extends React.PureComponent<Props, States> {
     this.state = {
       groupStageValues: values[this.step] || getInitialGroupStageValues()
     };
+  }
+  componentDidMount() {
+    if (!this.props.values[1]) {
+      this.props.onNext(-1);
+    }
+  }
+
+  public get disableNext() {
+    const { groupStageValues } = this.state;
+    for (let i = 0; i < groupStageValues.length; i++) {
+      if (groupStageValues[i].indexOf("") !== -1) {
+        return true;
+      }
+    }
+    return false;
   }
   public render() {
     const { classes } = this.props;
@@ -58,6 +69,7 @@ class groupStage extends React.PureComponent<Props, States> {
             variant="raised"
             color="primary"
             onClick={this.handleOnNextClick}
+            disabled={this.disableNext}
           >
             进入十六强
           </Button>
@@ -153,8 +165,8 @@ class groupStage extends React.PureComponent<Props, States> {
   };
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { groupStageValues } = this.state;
-    this.props.onNext(event, 2, groupStageValues);
+    this.props.onNext(this.step, groupStageValues);
   };
 }
 
-export default withStyles(styles)(groupStage);
+export default withStyles(styles)(GroupStage);

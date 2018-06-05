@@ -5,7 +5,9 @@
   "homepage": "./",
   "dependencies": {
     "@material-ui/core": "^1.1.0",
+    "@types/dom-to-image": "^2.6.0",
     "classnames": "^2.2.5",
+    "dom-to-image": "^2.6.0",
     "query-string": "^6.1.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

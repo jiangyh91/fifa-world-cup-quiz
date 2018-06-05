@@ -11,10 +11,7 @@ import tada from './images/tada.png';
 import styles, { ClassKeys } from './styles';
 
 interface HomePageProps {
-  onNext(
-    event: React.SyntheticEvent<HTMLButtonElement>,
-    nextStepValue: number
-  ): void;
+  onNext(nextStepValue: number): void;
 }
 
 type Props = HomePageProps & WithStyles<ClassKeys>;
@@ -46,7 +43,7 @@ class HomePage extends React.PureComponent<Props> {
   }
 
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.props.onNext(event, this.step);
+    this.props.onNext(this.step);
   };
 }
 

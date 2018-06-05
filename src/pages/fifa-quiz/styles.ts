@@ -23,7 +23,8 @@ export const sharedStyles: StyleRulesCallback<sharedClassKeys> = (
     margin: "2px 5%",
     padding: 12,
     borderRadius: 8,
-    background: "rgba(124,127,125, 0.1)"
+    background: "rgba(124,127,125, 0.1)",
+    minHeight: 360
   },
   headline: {
     textAlign: "center",
