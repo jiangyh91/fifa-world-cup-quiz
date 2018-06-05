@@ -12,18 +12,20 @@ import styles, { ClassKeys } from './styles';
 interface IntroProps {
   onNext(
     event: React.SyntheticEvent<HTMLButtonElement>,
-    nextStepValue: number
+    nextStepValue: number,
+    value: any
   ): void;
 }
 
 type Props = IntroProps & WithStyles<ClassKeys>;
 
 class Intro extends React.PureComponent<Props> {
+  private step = 1;
   public render() {
     const { classes } = this.props;
     return (
       <Screen footer>
-        <StepFlag step={1} />
+        <StepFlag step={this.step} />
         <Typography variant="headline" className={classes.headline}>
           游戏规则
         </Typography>
@@ -93,7 +95,7 @@ class Intro extends React.PureComponent<Props> {
   }
 
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.props.onNext(event, 2);
+    this.props.onNext(event, this.step, { start: true });
   };
 }
 

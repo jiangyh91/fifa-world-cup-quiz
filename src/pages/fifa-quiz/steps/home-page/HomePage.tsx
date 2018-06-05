@@ -20,6 +20,7 @@ interface HomePageProps {
 type Props = HomePageProps & WithStyles<ClassKeys>;
 
 class HomePage extends React.PureComponent<Props> {
+  private step = 0;
   public render() {
     const { classes } = this.props;
     return (
@@ -45,7 +46,7 @@ class HomePage extends React.PureComponent<Props> {
   }
 
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.props.onNext(event, 1);
+    this.props.onNext(event, this.step);
   };
 }
 

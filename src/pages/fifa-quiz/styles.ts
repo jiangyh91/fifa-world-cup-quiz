@@ -20,7 +20,7 @@ export const sharedStyles: StyleRulesCallback<sharedClassKeys> = (
   theme: Theme
 ) => ({
   paper: {
-    margin: "2px 24px",
+    margin: "2px 5%",
     padding: 12,
     borderRadius: 8,
     background: "rgba(124,127,125, 0.1)"

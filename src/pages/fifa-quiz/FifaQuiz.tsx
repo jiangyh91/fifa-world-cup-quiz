@@ -15,22 +15,29 @@ interface FiFaQuizProps {}
 type Props = FiFaQuizProps & WithStyles<ClassKeys> & RouteComponentProps<{}>;
 
 class FiFaQuiz extends React.PureComponent<Props> {
+  private values: Array<any> = [];
   public render() {
     const { step } = queryString.parse(location.search);
-    switch (step) {
-      case "1":
+    switch (Number(step)) {
+      case 1:
         return <Intro onNext={this.onNextClick} />;
-      case "2":
-        return <GroupStage onNext={this.onNextClick} />;
+      case 2:
+        return <GroupStage onNext={this.onNextClick} values={this.values} />;
       default:
         return <HomePage onNext={this.onNextClick} />;
     }
   }
   private onNextClick = (
     event: React.SyntheticEvent<HTMLButtonElement>,
-    nextStepValue: number
+    currentStep: number,
+    value?: any
   ) => {
-    this.props.history.push(`./?step=${nextStepValue}`);
+    if (value !== undefined) {
+      this.values[currentStep] = value;
+      this.values = this.values.slice(0, currentStep + 1);
+      console.log(this.values);
+    }
+    this.props.history.push(`./?step=${currentStep + 1}`);
   };
 }
 
