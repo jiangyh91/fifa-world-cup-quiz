@@ -10,6 +10,7 @@ import FourStage from './steps/four-stage';
 import GroupStage from './steps/group-stage';
 import HomePage from './steps/home-page';
 import Intro from './steps/intro';
+import Result from './steps/result';
 import SixteenStage from './steps/sixteen-stage';
 import TwoStage from './steps/two-stage';
 import styles, { ClassKeys } from './styles';
@@ -35,6 +36,8 @@ class FiFaQuiz extends React.PureComponent<Props> {
         return <FourStage onNext={this.onNextClick} values={this.values} />;
       case 6:
         return <TwoStage onNext={this.onNextClick} values={this.values} />;
+      case 7:
+        return <Result onNext={this.onNextClick} values={this.values} />;
       default:
         return <HomePage onNext={this.onNextClick} />;
     }

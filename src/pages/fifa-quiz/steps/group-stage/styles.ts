@@ -41,7 +41,7 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     height: 18,
     width: 18,
     marginRight: 6,
-    lineHeight: "20px"
+    lineHeight: "18px"
   },
   unchecked: {
     border: `2px solid ${theme.palette.text.secondary}`,

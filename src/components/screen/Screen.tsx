@@ -16,6 +16,8 @@ interface ScreenProps {
 type Props = ScreenProps & WithStyles<ClassKeys>;
 
 class Screen extends React.PureComponent<Props> {
+  private screenComponentProps = { id: "screen-with-background" };
+  private mainComponentProps = { id: "screen-without-background" };
   public render() {
     const { classes, children, background, flex, footer } = this.props;
     return (
@@ -25,8 +27,12 @@ class Screen extends React.PureComponent<Props> {
           background && classes.backgroundColor
         )}
         justifyContent="space-around"
+        componentProps={this.screenComponentProps}
       >
-        <div className={classNames(classes.main, flex && classes.flex)}>
+        <div
+          className={classNames(classes.main, flex && classes.flex)}
+          id="screen-without-background"
+        >
           {children}
         </div>
         {!!footer && (

@@ -9,7 +9,7 @@ import Screen from 'src/components/screen';
 import StepFlag from 'src/components/step-flag';
 
 import { flagMapping } from '../group-stage/models';
-import { prepareTeams } from './helpers';
+import { prepareSixteenTeams } from './helpers';
 import footNball from './images/footNball.png';
 import styles, { ClassKeys } from './styles';
 
@@ -34,7 +34,7 @@ class SixteenStage extends React.PureComponent<Props, States> {
     this.state = {
       sixteenStageValues: values[this.step] || []
     };
-    this.teamsArray = prepareTeams(values[this.step - 1]);
+    this.teamsArray = prepareSixteenTeams(values[this.step - 1]);
   }
   componentDidMount() {
     if (!this.props.values[1]) {

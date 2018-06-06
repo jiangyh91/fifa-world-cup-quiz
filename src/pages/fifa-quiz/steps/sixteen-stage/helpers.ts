@@ -1,4 +1,4 @@
-export function prepareTeams(
+export function prepareSixteenTeams(
   values?: Array<Array<string>>
 ): Array<Array<string>> {
   if (values === undefined) {

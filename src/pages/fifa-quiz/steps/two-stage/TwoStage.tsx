@@ -11,6 +11,7 @@ import StepFlag from 'src/components/step-flag';
 import { flagMapping } from '../group-stage/models';
 import footNball from '../sixteen-stage/images/footNball.png';
 import { prepareTeams } from './helpers';
+import worldcup from './images/worldcup.png';
 import styles, { ClassKeys } from './styles';
 
 interface TwoStageProps {
@@ -22,8 +23,8 @@ type Props = TwoStageProps & WithStyles<ClassKeys>;
 
 interface States {
   sixteenStageValues: Array<string>;
-  dataUrl?: string;
 }
+
 class TwoStage extends React.PureComponent<Props, States> {
   private step = 6;
 
@@ -41,44 +42,30 @@ class TwoStage extends React.PureComponent<Props, States> {
     if (!this.props.values[1]) {
       this.props.onNext(-1);
     }
-
-    // let node = document.getElementById("root") as HTMLElement;
-    // domtoimage
-    //   .toJpeg(node)
-    //   .then(dataUrl => {
-    //     // let img = new Image();
-    //     // img.src = dataUrl;
-    //     // document.body.appendChild(img);
-    //     this.setState({ dataUrl });
-    //   })
-    //   .catch(function(error) {
-    //     console.error("oops, something went wrong!", error);
-    //   });
   }
   public render() {
     const { classes } = this.props;
-    const { dataUrl } = this.state;
     return (
       <Screen footer>
         <StepFlag step={this.step} />
-        {dataUrl && <img src={dataUrl} alt="图" />}
         <Typography variant="headline" className={classes.headline}>
           游戏规则
         </Typography>
         <div className={classes.paper}>
           <div className={classNames(classes.point, classes.red)}>
             <span>第五轮：</span>
-            <span className={classNames(classes.black)}>
-              选择你心目中最终的冠军团队,
-            </span>
+            <span className={classNames(classes.black)}>选择你心目中最终的冠军团队,</span>
             <span>猜中即可赢工签/PR+累计10小时PTE</span>
           </div>
-          <Typography
+          {/* <Typography
             variant="headline"
             className={classNames(classes.headline, classes.textShadow)}
           >
             VS
-          </Typography>
+          </Typography> */}
+          <FlexLayout justifyContent="space-around">
+            <img className={classes.worldcup} src={worldcup} alt="worldcup" />
+          </FlexLayout>
           {this.teamsArray.map(this.renderGroup)}
 
           <Button
@@ -114,10 +101,7 @@ class TwoStage extends React.PureComponent<Props, States> {
         <React.Fragment>
           <FlexLayout>
             <ButtonBase
-              className={classNames(
-                classes.teamButton,
-                winnerValue === teams[0] && classes.checkedButton
-              )}
+              className={classNames(classes.teamButton, winnerValue === teams[0] && classes.checkedButton)}
               data-group-index={index}
               data-team-name={teams[0]}
               onClick={this.handleOnTeamClick}
@@ -126,10 +110,7 @@ class TwoStage extends React.PureComponent<Props, States> {
               <div className={classes.teamName}>{teams[0]}</div>
             </ButtonBase>
             <ButtonBase
-              className={classNames(
-                classes.teamButton,
-                winnerValue === teams[1] && classes.checkedButton
-              )}
+              className={classNames(classes.teamButton, winnerValue === teams[1] && classes.checkedButton)}
               data-group-index={index}
               data-team-name={teams[1]}
               onClick={this.handleOnTeamClick}
