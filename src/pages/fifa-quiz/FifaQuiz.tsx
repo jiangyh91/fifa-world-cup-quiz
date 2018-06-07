@@ -20,7 +20,24 @@ interface FiFaQuizProps {}
 type Props = FiFaQuizProps & WithStyles<ClassKeys> & RouteComponentProps<{}>;
 
 class FiFaQuiz extends React.PureComponent<Props> {
-  private values: Array<any> = [];
+  private values: Array<any> = [
+    null,
+    true,
+    [
+      ["俄罗斯", "沙特阿拉伯"],
+      ["伊朗", "葡萄牙"],
+      ["澳大利亚", "法国"],
+      ["阿根廷", "冰岛"],
+      ["巴西", "瑞士"],
+      ["德国", "墨西哥"],
+      ["比利时", "巴拿马"],
+      ["哥伦比亚", "波兰"]
+    ],
+    ["俄罗斯", "冰岛", "墨西哥", "比利时", "沙特阿拉伯", "阿根廷", "瑞士", "巴拿马"],
+    ["俄罗斯", "比利时", "沙特阿拉伯", "巴拿马"],
+    ["俄罗斯", "巴拿马"],
+    ["俄罗斯"]
+  ];
   public render() {
     const { step } = queryString.parse(location.search);
     switch (Number(step)) {
@@ -46,7 +63,7 @@ class FiFaQuiz extends React.PureComponent<Props> {
     if (value !== undefined) {
       this.values[currentStep] = value;
       this.values = this.values.slice(0, currentStep + 1);
-      console.log(this.values);
+      // console.log(this.values);
       console.log(JSON.stringify(this.values));
     }
     this.props.history.push(`./?step=${currentStep + 1}`);

@@ -8,6 +8,5 @@ body {
   font-family: sans-serif;
 }
 #root {
-  display: flex;
-  min-height: 100%;
+  height: 100%;
 }

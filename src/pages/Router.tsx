@@ -6,7 +6,7 @@ import ScrollToTop from '../components/scroll-to-top';
 import FiFaQuiz from './fifa-quiz';
 
 export default () => (
-  <BrowserRouter basename="/build">
+  <BrowserRouter basename="/fifa">
     <React.Fragment>
       <ScrollToTop />
       <Route exact path="/" component={FiFaQuiz} />

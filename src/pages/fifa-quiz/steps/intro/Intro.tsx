@@ -61,7 +61,7 @@ class Intro extends React.PureComponent<Props> {
             <div className={classNames(classes.paragraph, classes.bigFont)}>
               <span className={classes.bigTitle}>终极大奖: </span>
               <span className={classes.black}>
-                凡猜中所有线路图，通成将为您的移民之路买单 (留学移民签证, PY、CCL、PTE所有课程)
+                凡猜中所有线路图，卓越和通成将携手为您的移民之路买单 (留学移民签证, PY、CCL、PTE所有课程)
               </span>
             </div>
           </div>

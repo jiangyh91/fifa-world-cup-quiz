@@ -7,6 +7,7 @@ import * as html2canvas from 'html2canvas';
 import FlexLayout from 'src/components/flex-layout';
 import Screen from 'src/components/screen';
 
+import { dataAttribute } from '../../../../utils/domHelper';
 import { flagMapping, teamGroups } from '../group-stage/models';
 import { prepareSixteenTeams } from '../sixteen-stage/helpers';
 import qrcode from './images/qrcode.jpg';
@@ -33,32 +34,33 @@ class Result extends React.PureComponent<Props, States> {
   private twoTeams: Array<string> = this.props.values[5] || [];
   private winner: Array<string> = this.props.values[6] || [];
 
+  private imagesLoaded: Array<boolean> = [false, false];
+
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      // imagesLoaded : [false, false]
+    };
   }
   componentDidMount() {
     if (!this.props.values[1]) {
       this.props.onNext(-1);
-    } else {
-      let node = document.getElementById("root") as HTMLElement;
-      html2canvas(node, { scale: 3 })
-        .then((canvas: HTMLCanvasElement) => {
-          console.log(canvas);
-          this.setState({ canvas });
-        })
-        .catch(function(error: any) {
-          console.error("html to canvas failed", error);
-        });
     }
   }
+
   public render() {
     const { classes } = this.props;
     const { canvas } = this.state;
     return (
       <Screen background flex>
         {this.renderCanvas()}
-        <img src={share} className={classes.headerImage} alt="share_header" />
+        <img
+          src={share}
+          className={classes.headerImage}
+          alt="share_header"
+          data-image-id="0"
+          onLoad={this.handleOnImageLoad}
+        />
         <FlexLayout className={classes.resultImage}>
           {this.renderLeftEightName()}
           {this.renderLeftEightFlag()}
@@ -71,8 +73,8 @@ class Result extends React.PureComponent<Props, States> {
           {this.renderRightEightName()}
         </FlexLayout>
         <FlexLayout className={classes.qrcodeBox} alignItems="center">
-          <img className={classes.qrcode} src={qrcode} alt="qrcode" />
-          <div className={classes.qrcodeDesc}>长按二维码，添加通小成，来领取你的奖品哦~</div>
+          <img className={classes.qrcode} src={qrcode} alt="qrcode" data-image-id="1" onLoad={this.handleOnImageLoad} />
+          <div className={classes.qrcodeDesc}>长按二维码, 将游戏分享给更多的朋友来领取你的奖品哦~</div>
         </FlexLayout>
       </Screen>
     );
@@ -326,6 +328,30 @@ class Result extends React.PureComponent<Props, States> {
     }
     return undefined;
   }
+
+  private handleOnImageLoad = (event: React.UIEvent<HTMLImageElement>) => {
+    event.preventDefault();
+    if (!this.props.values[1]) {
+      return;
+    }
+    const imageId = dataAttribute("image-id", event) || "";
+    console.log(imageId);
+    this.imagesLoaded[imageId] = true;
+    const finished = this.imagesLoaded.findIndex(loaded => !loaded) === -1;
+    if (finished) {
+      setTimeout(() => {
+        let node = document.getElementById("screen-with-background") as HTMLElement;
+        html2canvas(node, { scale: 3 })
+          .then((canvas: HTMLCanvasElement) => {
+            console.log(canvas);
+            this.setState({ canvas });
+          })
+          .catch(function(error: any) {
+            console.error("html to canvas failed", error);
+          });
+      }, 500);
+    }
+  };
 }
 
 export default withStyles(styles)(Result);
