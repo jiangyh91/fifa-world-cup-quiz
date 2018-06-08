@@ -10,6 +10,7 @@ import Screen from 'src/components/screen';
 import { dataAttribute } from '../../../../utils/domHelper';
 import { flagMapping, teamGroups } from '../group-stage/models';
 import { prepareSixteenTeams } from '../sixteen-stage/helpers';
+import gameQrcode from './images/game-qrcode.png';
 import qrcode from './images/qrcode.jpg';
 import share from './images/share.png';
 import styles, { ClassKeys } from './styles';
@@ -73,8 +74,16 @@ class Result extends React.PureComponent<Props, States> {
           {this.renderRightEightName()}
         </FlexLayout>
         <FlexLayout className={classes.qrcodeBox} alignItems="center">
-          <img className={classes.qrcode} src={qrcode} alt="qrcode" data-image-id="1" onLoad={this.handleOnImageLoad} />
-          <div className={classes.qrcodeDesc}>长按二维码, 将游戏分享给更多的朋友来领取你的奖品哦~</div>
+          <img
+            className={classes.qrcode}
+            src={gameQrcode}
+            alt="qrcode"
+            data-image-id="1"
+            onLoad={this.handleOnImageLoad}
+          />
+          <div className={classNames(classes.qrcodeDesc, classes.qrcodeDescBold)}>
+            长按二维码，开始你的世界杯之旅，参与就有机会拿大奖！
+          </div>
         </FlexLayout>
       </Screen>
     );
@@ -324,7 +333,15 @@ class Result extends React.PureComponent<Props, States> {
     const { classes } = this.props;
     const { canvas } = this.state;
     if (!!canvas) {
-      return <img className={classes.canvas} src={canvas.toDataURL()} alt="canvas" />;
+      return (
+        <div className={classes.canvasBox}>
+          <img className={classes.canvas} src={canvas.toDataURL()} alt="canvas" />
+          <FlexLayout className={classNames(classes.qrcodeBox, classes.qrcodeFloat)} alignItems="center">
+            <img className={classes.qrcode} src={qrcode} alt="qrcode" />
+            <div className={classes.qrcodeDesc}>扫码通小成，大奖立即到手！</div>
+          </FlexLayout>
+        </div>
+      );
     }
     return undefined;
   }
@@ -337,11 +354,11 @@ class Result extends React.PureComponent<Props, States> {
     const imageId = dataAttribute("image-id", event) || "";
     console.log(imageId);
     this.imagesLoaded[imageId] = true;
-    const finished = this.imagesLoaded.findIndex(loaded => !loaded) === -1;
+    const finished = this.imagesLoaded[0] && this.imagesLoaded[1];
     if (finished) {
       setTimeout(() => {
         let node = document.getElementById("screen-with-background") as HTMLElement;
-        html2canvas(node, { scale: 3 })
+        html2canvas(node, { scale: 2 })
           .then((canvas: HTMLCanvasElement) => {
             console.log(canvas);
             this.setState({ canvas });
@@ -349,7 +366,7 @@ class Result extends React.PureComponent<Props, States> {
           .catch(function(error: any) {
             console.error("html to canvas failed", error);
           });
-      }, 500);
+      }, 100);
     }
   };
 }

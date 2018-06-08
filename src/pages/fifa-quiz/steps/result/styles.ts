@@ -2,6 +2,7 @@ import { StyleRulesCallback, Theme } from '@material-ui/core/styles';
 
 export type ClassKeys =
   | "headerImage"
+  | "canvasBox"
   | "canvas"
   | "resultImage"
   | "resultColumn"
@@ -30,18 +31,28 @@ export type ClassKeys =
   | "winnerBorder"
   | "qrcodeBox"
   | "qrcode"
-  | "qrcodeDesc";
+  | "qrcodeDesc"
+  | 'qrcodeDescBold'
+  | "qrcodeFloat";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   headerImage: {
     width: "95%",
     paddingTop: 20,
-    paddingBottom: 20
+    paddingBottom: 0
   },
   canvas: {
-    position: "absolute",
     height: "100%",
-    zIndex: 10
+    width: "100%",
+    zIndex: 10,
+    position: "relative"
+  },
+  canvasBox: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
   },
   resultImage: {
     width: "95%"
@@ -260,6 +271,18 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   qrcodeDesc: {
     color: "white",
     fontSize: "14px"
+  },
+  qrcodeDescBold:{
+    fontWeight: 'bold'
+  },
+  qrcodeFloat: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 20,
+    paddingTop: 20,
+    background: "#D80000"
   }
 });
 
