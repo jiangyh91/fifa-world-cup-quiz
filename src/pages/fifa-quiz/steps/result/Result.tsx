@@ -336,10 +336,13 @@ class Result extends React.PureComponent<Props, States> {
       return (
         <div className={classes.canvasBox}>
           <img className={classes.canvas} src={canvas.toDataURL()} alt="canvas" />
-          <FlexLayout className={classNames(classes.qrcodeBox, classes.qrcodeFloat)} alignItems="center">
-            <img className={classes.qrcode} src={qrcode} alt="qrcode" />
-            <div className={classes.qrcodeDesc}>扫码通小成，大奖立即到手！</div>
-          </FlexLayout>
+          <div className={classes.qrcodeFloat}>
+            <div className={classNames(classes.qrcodeTitle, classes.qrcodeDesc)}>长按以上预测图保存到相册</div>
+            <FlexLayout className={classNames(classes.qrcodeBox)} alignItems="center">
+              <img className={classes.qrcode} src={qrcode} alt="qrcode" />
+              <div className={classes.qrcodeDesc}>扫码通小成，大奖立即到手！</div>
+            </FlexLayout>
+          </div>
         </div>
       );
     }

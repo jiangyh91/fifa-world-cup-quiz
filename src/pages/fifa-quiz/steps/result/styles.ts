@@ -31,8 +31,9 @@ export type ClassKeys =
   | "winnerBorder"
   | "qrcodeBox"
   | "qrcode"
+  | "qrcodeTitle"
   | "qrcodeDesc"
-  | 'qrcodeDescBold'
+  | "qrcodeDescBold"
   | "qrcodeFloat";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
@@ -268,12 +269,17 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     width: "140px",
     paddingRight: "20px"
   },
+  qrcodeTitle: {
+    textAlign: "center",
+    paddingTop: 5,
+    paddingBottom: 10,
+  },
   qrcodeDesc: {
     color: "white",
     fontSize: "14px"
   },
-  qrcodeDescBold:{
-    fontWeight: 'bold'
+  qrcodeDescBold: {
+    fontWeight: "bold"
   },
   qrcodeFloat: {
     position: "absolute",
@@ -281,7 +287,6 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     left: 0,
     right: 0,
     zIndex: 20,
-    paddingTop: 20,
     background: "#D80000"
   }
 });
