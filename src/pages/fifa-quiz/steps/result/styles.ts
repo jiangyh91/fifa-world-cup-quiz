@@ -45,7 +45,6 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   canvas: {
     height: "100%",
     width: "100%",
-    zIndex: 10,
     position: "relative"
   },
   canvasBox: {
@@ -53,10 +52,12 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
+    zIndex: 200
   },
   resultImage: {
-    width: "95%"
+    width: "95%",
+    zIndex: 200
   },
   resultColumn: {
     flex: 1
@@ -272,7 +273,7 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   qrcodeTitle: {
     textAlign: "center",
     paddingTop: 5,
-    paddingBottom: 10,
+    paddingBottom: 10
   },
   qrcodeDesc: {
     color: "white",

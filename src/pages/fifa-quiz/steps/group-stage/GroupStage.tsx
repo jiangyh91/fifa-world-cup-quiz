@@ -1,7 +1,16 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { Button, ButtonBase, Divider, ListSubheader, Paper, Typography, WithStyles, withStyles } from '@material-ui/core';
+import {
+  Button,
+  ButtonBase,
+  Divider,
+  ListSubheader,
+  Paper,
+  Typography,
+  WithStyles,
+  withStyles,
+} from '@material-ui/core';
 import { dataAttribute } from 'src/utils/domHelper';
 
 import FlexLayout from 'src/components/flex-layout';
@@ -56,11 +65,9 @@ class GroupStage extends React.PureComponent<Props, States> {
           游戏规则
         </Typography>
         <div className={classes.paper}>
-          <div className={classNames(classes.point, classes.red)}>
+          <div className={classNames(classes.point, classes.red, classes.marginBottom)}>
             <span>第一轮：</span>
-            <span className={classNames(classes.black)}>
-              选择小组第一及小组第二，进入16强,
-            </span>
+            <span className={classNames(classes.black)}>选择小组第一及小组第二，进入16强,</span>
             <span>猜中即可累计20小时PTE</span>
           </div>
           {teamGroups.map(this.renderGroup)}
@@ -83,35 +90,34 @@ class GroupStage extends React.PureComponent<Props, States> {
     const { classes } = this.props;
     return (
       <Paper key={group.name} className={classes.group}>
-        <ListSubheader
-          className={classes.groupHeader}
-          disableSticky
-          component="div"
-        >
-          {group.name}组
+        <ListSubheader className={classes.groupHeader} disableSticky component="div">
+          {group.name === "A" ? group.name + "组 (*每组四选二)" : group.name + "组"}
         </ListSubheader>
         <Divider />
         <FlexLayout>
-          {this.renderTeamButton(index, group.teams[0])}
-          {this.renderTeamButton(index, group.teams[1])}
+          {this.renderTeamButton(index, group.teams, 0)}
+          {this.renderTeamButton(index, group.teams, 1)}
         </FlexLayout>
         <Divider />
         <FlexLayout>
-          {this.renderTeamButton(index, group.teams[2])}
-          {this.renderTeamButton(index, group.teams[3])}
+          {this.renderTeamButton(index, group.teams, 2)}
+          {this.renderTeamButton(index, group.teams, 3)}
         </FlexLayout>
       </Paper>
     );
   };
-  private renderTeamButton(groupIndex: number, teamName: string) {
+  private renderTeamButton(groupIndex: number, teams: Array<string>, teamIndex: number) {
     const { classes } = this.props;
     const { groupStageValues } = this.state;
+    const teamName = teams[teamIndex];
     const teamValue = resolveTeamValue(groupStageValues, groupIndex, teamName);
     return (
       <ButtonBase
         className={classNames(
           classes.teamButton,
-          teamValue && classes.checkedButton
+          teamValue && classes.checkedButton,
+          teamIndex === 2 && classes.bottomLeftRadius,
+          teamIndex === 3 && classes.bottomRightRadius
         )}
         data-group-index={groupIndex}
         data-team-name={teamName}
@@ -126,16 +132,7 @@ class GroupStage extends React.PureComponent<Props, States> {
 
   private renderCheckBox(value?: string) {
     const { classes } = this.props;
-    return (
-      <div
-        className={classNames(
-          classes.checkBox,
-          !!value ? classes.checked : classes.unchecked
-        )}
-      >
-        {value}
-      </div>
-    );
+    return <div className={classNames(classes.checkBox, !!value ? classes.checked : classes.unchecked)}>{value}</div>;
   }
   private handleOnTeamClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -146,9 +143,7 @@ class GroupStage extends React.PureComponent<Props, States> {
     const { groupStageValues } = this.state;
     const groupValues = groupStageValues[groupIndex];
 
-    const targetIndex = groupValues.findIndex(
-      teamName => teamName === targetTeamName
-    );
+    const targetIndex = groupValues.findIndex(teamName => teamName === targetTeamName);
     if (targetIndex !== -1) {
       groupValues[targetIndex] = "";
 

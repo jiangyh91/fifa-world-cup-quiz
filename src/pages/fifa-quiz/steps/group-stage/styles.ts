@@ -7,20 +7,30 @@ export type ClassKeys =
   | "group"
   | "groupHeader"
   | "teamButton"
+  | "bottomLeftRadius"
+  | "bottomRightRadius"
   | "teamName"
   | "checkedButton"
   | "checkBox"
   | "unchecked"
-  | "checked";
+  | "checked"
+  | "marginBottom";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   ...sharedStyles(theme),
+  "$point + $group": {
+    marginTop: 20
+  },
+
   group: {
-    marginBottom: 16
+    marginBottom: 16,
+    borderRadius: 8
   },
   groupHeader: {
     lineHeight: "38px",
-    background: theme.palette.grey[100]
+    background: theme.palette.grey[100],
+    borderTopLeftRadius: "8px",
+    borderTopRightRadius: "8px"
   },
   teamButton: {
     width: "50%",
@@ -30,6 +40,12 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     "& + $teamButton": {
       borderLeft: `1px solid ${theme.palette.divider}`
     }
+  },
+  bottomLeftRadius: {
+    borderBottomLeftRadius: "8px"
+  },
+  bottomRightRadius: {
+    borderBottomRightRadius: "8px"
   },
   checkedButton: {
     background: theme.palette.common.white
@@ -52,6 +68,9 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     background: "rgb(254,28,28)",
     borderRadius: 2,
     color: theme.palette.common.white
+  },
+  marginBottom: {
+    marginBottom: 20
   }
 });
 

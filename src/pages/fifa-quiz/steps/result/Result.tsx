@@ -39,9 +39,7 @@ class Result extends React.PureComponent<Props, States> {
 
   constructor(props: Props) {
     super(props);
-    this.state = {
-      // imagesLoaded : [false, false]
-    };
+    this.state = {};
   }
   componentDidMount() {
     if (!this.props.values[1]) {
@@ -82,7 +80,7 @@ class Result extends React.PureComponent<Props, States> {
             onLoad={this.handleOnImageLoad}
           />
           <div className={classNames(classes.qrcodeDesc, classes.qrcodeDescBold)}>
-            长按二维码，开始你的世界杯之旅，参与就有机会拿大奖！
+            长按二维码，开始你的世界杯之旅，立即拿免费工签，PR，还有5万澳元终极大奖等你来！
           </div>
         </FlexLayout>
       </Screen>
@@ -340,7 +338,7 @@ class Result extends React.PureComponent<Props, States> {
             <div className={classNames(classes.qrcodeTitle, classes.qrcodeDesc)}>长按以上预测图保存到相册</div>
             <FlexLayout className={classNames(classes.qrcodeBox)} alignItems="center">
               <img className={classes.qrcode} src={qrcode} alt="qrcode" />
-              <div className={classes.qrcodeDesc}>扫码通小成，大奖立即到手！</div>
+              <div className={classes.qrcodeDesc}>扫码通小成，免费工签、PR、PTE课程立即到手！</div>
             </FlexLayout>
           </div>
         </div>

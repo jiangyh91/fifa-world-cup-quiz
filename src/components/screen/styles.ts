@@ -1,25 +1,26 @@
 import { StyleRulesCallback, Theme } from '@material-ui/core/styles';
 
-export type ClassKeys =
-  | "screen"
-  | "main"
-  | "backgroundColor"
-  | "flex"
-  | "footer";
-
+export type ClassKeys = "container" | "screen" | "backdrop" | "backgroundColor" | "flex" | "footer";
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
-  screen: {
+  container: {
     minHeight: "100%",
     minWidth: 295,
     position: "relative"
   },
-  main: {
+  screen: {
     width: "100%",
     maxWidth: 768,
-    position: "relative"
+    zIndex: 200
+    // position: "relative"
+  },
+  backdrop: {
+    position: "absolute",
+    width: "100%",
+    maxWidth: 768,
+    zIndex: 100
   },
   backgroundColor: {
-    background: "linear-gradient(45deg, #fe0b0b 30%, #fa5d5d 90%)"
+    backgroundImage: `linear-gradient(45deg, #fe0b0b 30%, #fa5d5d 90%)`
   },
   flex: {
     display: "flex",

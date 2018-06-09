@@ -21,7 +21,7 @@ class HomePage extends React.PureComponent<Props> {
   public render() {
     const { classes } = this.props;
     return (
-      <Screen background flex>
+      <Screen background backdrop flex>
         <img src={star} className={classes.starImage1} alt="star" />
         <img src={star} className={classes.starImage2} alt="star" />
         <img src={star} className={classes.starImage3} alt="star" />
@@ -30,12 +30,7 @@ class HomePage extends React.PureComponent<Props> {
           <img src={tada} className={classes.tadaImage} alt="tada" />
           <img src={desc} className={classes.descImage} alt="desc" />
         </Paper>
-        <Button
-          className={classes.button}
-          variant="raised"
-          color="primary"
-          onClick={this.handleOnNextClick}
-        >
+        <Button className={classes.button} variant="raised" color="primary" onClick={this.handleOnNextClick}>
           立即开启
         </Button>
       </Screen>
