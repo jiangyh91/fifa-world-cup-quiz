@@ -1,16 +1,17 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { Button, ButtonBase, Divider, Paper, Typography, WithStyles, withStyles } from '@material-ui/core';
-import { dataAttribute } from 'src/utils/domHelper';
+import { Button, Typography, WithStyles, withStyles } from '@material-ui/core';
 
 import FlexLayout from 'src/components/flex-layout';
 import Screen from 'src/components/screen';
 import StepFlag from 'src/components/step-flag';
 
-import { flagMapping } from '../group-stage/models';
-import footNball from '../sixteen-stage/images/footNball.png';
-import { prepareTeams } from './helpers';
+import { prepareTeams } from '../eight-stage/helpers';
+import TeamButtonGroup from '../sixteen-stage/components/team-button-group';
+import { disabledNext } from '../sixteen-stage/helpers';
+import vsImage from '../sixteen-stage/images/vs.svg';
+import castle from '../two-stage/images/castle.png';
 import styles, { ClassKeys } from './styles';
 
 interface FourStageProps {
@@ -21,7 +22,7 @@ interface FourStageProps {
 type Props = FourStageProps & WithStyles<ClassKeys>;
 
 interface States {
-  sixteenStageValues: Array<string>;
+  stageValues: Array<string>;
 }
 class FourStage extends React.PureComponent<Props, States> {
   private step = 5;
@@ -32,7 +33,7 @@ class FourStage extends React.PureComponent<Props, States> {
     super(props);
     const { values } = props;
     this.state = {
-      sixteenStageValues: values[this.step] || []
+      stageValues: values[this.step] || []
     };
     this.teamsArray = prepareTeams(values[this.step - 1]);
   }
@@ -43,6 +44,7 @@ class FourStage extends React.PureComponent<Props, States> {
   }
   public render() {
     const { classes } = this.props;
+    const { stageValues } = this.state;
     return (
       <Screen footer>
         <StepFlag step={this.step} />
@@ -55,91 +57,31 @@ class FourStage extends React.PureComponent<Props, States> {
             <span className={classNames(classes.black)}>选择决赛团队晋级,</span>
             <span>猜中即可累计10小时PTE</span>
           </div>
-          <Typography
-            variant="headline"
-            className={classNames(classes.headline, classes.textShadow)}
-          >
-            VS
-          </Typography>
-          {this.teamsArray.map(this.renderGroup)}
-
+          <FlexLayout className={classes.vsImageBox} justifyContent="space-around">
+            <img src={vsImage} alt="vs" />
+          </FlexLayout>
+          <TeamButtonGroup winnerArray={stageValues} teamsArray={this.teamsArray} onClick={this.handleOnTeamClick} />
           <Button
             className={classes.button}
             variant="raised"
             color="primary"
             onClick={this.handleOnNextClick}
-            disabled={this.disableNext}
+            disabled={disabledNext(stageValues, 2)}
           >
             进入决赛
           </Button>
         </div>
-        <img src={footNball} className={classes.cornerImage} alt="tadaball" />
+        <img src={castle} className={classes.cornerImage} alt="tadaball" />
       </Screen>
     );
   }
-  private get disableNext() {
-    const { sixteenStageValues } = this.state;
-    if (sixteenStageValues.length === 2) {
-      if (sixteenStageValues.findIndex(item => item === undefined) === -1) {
-        return false;
-      }
-    }
-    return true;
-  }
-  private renderGroup = (teams: Array<string>, index: number) => {
-    const { classes } = this.props;
-    const { sixteenStageValues } = this.state;
-    const winnerValue = sixteenStageValues[index]; // resolveTeamValue(groupStageValues, groupIndex, teamName);
-    return (
-      <Paper className={classes.group} key={teams[0]}>
-        <React.Fragment>
-          <FlexLayout>
-            <ButtonBase
-              className={classNames(
-                classes.teamButton,
-                winnerValue === teams[0] && classes.checkedButton
-              )}
-              data-group-index={index}
-              data-team-name={teams[0]}
-              onClick={this.handleOnTeamClick}
-            >
-              <img src={flagMapping[teams[0]]} alt={teams[0]} />
-              <div className={classes.teamName}>{teams[0]}</div>
-            </ButtonBase>
-            <ButtonBase
-              className={classNames(
-                classes.teamButton,
-                winnerValue === teams[1] && classes.checkedButton
-              )}
-              data-group-index={index}
-              data-team-name={teams[1]}
-              onClick={this.handleOnTeamClick}
-            >
-              <div className={classes.teamName}>{teams[1]}</div>
-              <img src={flagMapping[teams[1]]} alt={teams[1]} />
-            </ButtonBase>
-          </FlexLayout>
-          <Divider />
-        </React.Fragment>
-      </Paper>
-    );
-  };
 
-  private handleOnTeamClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-
-    const groupIndex = Number(dataAttribute("group-index", event) || 0);
-    const targetTeamName = dataAttribute("team-name", event) || "";
-
-    const { sixteenStageValues } = this.state;
-    if (sixteenStageValues[groupIndex] !== targetTeamName) {
-      sixteenStageValues[groupIndex] = targetTeamName;
-      this.setState({ sixteenStageValues: sixteenStageValues.concat() });
-    }
+  private handleOnTeamClick = (event: React.MouseEvent<HTMLButtonElement>, value: Array<string>) => {
+    this.setState({ stageValues: value });
   };
   private handleOnNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const { sixteenStageValues } = this.state;
-    this.props.onNext(this.step, sixteenStageValues);
+    const { stageValues } = this.state;
+    this.props.onNext(this.step, stageValues);
   };
 }
 

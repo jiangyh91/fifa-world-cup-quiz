@@ -355,7 +355,6 @@ class Result extends React.PureComponent<Props, States> {
       return;
     }
     const imageId = dataAttribute("image-id", event) || "";
-    console.log(imageId);
     this.imagesLoaded[imageId] = true;
     const finished = this.imagesLoaded[0] && this.imagesLoaded[1];
     if (finished) {
@@ -363,13 +362,12 @@ class Result extends React.PureComponent<Props, States> {
         let node = document.getElementById("screen-with-background") as HTMLElement;
         html2canvas(node, { scale: 2 })
           .then((canvas: HTMLCanvasElement) => {
-            console.log(canvas);
             this.setState({ canvas });
           })
           .catch(function(error: any) {
             console.error("html to canvas failed", error);
           });
-      }, 100);
+      }, 50);
     }
   };
 }

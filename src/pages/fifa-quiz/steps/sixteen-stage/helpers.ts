@@ -1,6 +1,4 @@
-export function prepareSixteenTeams(
-  values?: Array<Array<string>>
-): Array<Array<string>> {
+export function prepareSixteenTeams(values?: Array<Array<string>>): Array<Array<string>> {
   if (values === undefined) {
     return [];
   }
@@ -12,4 +10,13 @@ export function prepareSixteenTeams(
     result.push([values[i][0], values[i - 1][1]]);
   }
   return result;
+}
+
+export function disabledNext(stageValues: Array<string>, length: number) {
+  if (stageValues.length === length) {
+    if (stageValues.findIndex(item => item === undefined) === -1) {
+      return false;
+    }
+  }
+  return true;
 }

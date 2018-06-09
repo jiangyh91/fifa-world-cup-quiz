@@ -1,6 +1,7 @@
 import { StyleRulesCallback, Theme } from '@material-ui/core/styles';
 
 export type ClassKeys =
+  | "container"
   | "button"
   | "paper"
   | "logoImage"
@@ -11,6 +12,10 @@ export type ClassKeys =
   | "starImage3";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
+  container: {
+    position: "relative",
+    height: "100%"
+  },
   button: {
     margin: 24
   },
