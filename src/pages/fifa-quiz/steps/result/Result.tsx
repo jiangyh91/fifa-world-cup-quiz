@@ -53,13 +53,15 @@ class Result extends React.PureComponent<Props, States> {
     return (
       <Screen background flex>
         {this.renderCanvas()}
-        <img
-          src={share}
-          className={classes.headerImage}
-          alt="share_header"
-          data-image-id="0"
-          onLoad={this.handleOnImageLoad}
-        />
+        <FlexLayout className={classes.headerImageBox} alignItems="center">
+          <img
+            src={share}
+            className={classes.headerImage}
+            alt="share_header"
+            data-image-id="0"
+            onLoad={this.handleOnImageLoad}
+          />
+        </FlexLayout>
         <FlexLayout className={classes.resultImage}>
           {this.renderLeftEightName()}
           {this.renderLeftEightFlag()}
@@ -334,13 +336,13 @@ class Result extends React.PureComponent<Props, States> {
       return (
         <div className={classes.canvasBox}>
           <img className={classes.canvas} src={canvas.toDataURL()} alt="canvas" />
-          <div className={classes.qrcodeFloat}>
+          <FlexLayout flexDirection="column" alignItems="center" className={classes.qrcodeFloat}>
             <div className={classNames(classes.qrcodeTitle, classes.qrcodeDesc)}>长按以上预测图保存到相册</div>
             <FlexLayout className={classNames(classes.qrcodeBox)} alignItems="center">
               <img className={classes.qrcode} src={qrcode} alt="qrcode" />
               <div className={classes.qrcodeDesc}>扫码通小成，免费工签、PR、PTE课程立即到手！</div>
             </FlexLayout>
-          </div>
+          </FlexLayout>
         </div>
       );
     }

@@ -1,6 +1,7 @@
 import { StyleRulesCallback, Theme } from '@material-ui/core/styles';
 
 export type ClassKeys =
+  | "headerImageBox"
   | "headerImage"
   | "canvasBox"
   | "canvas"
@@ -37,10 +38,14 @@ export type ClassKeys =
   | "qrcodeFloat";
 
 const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
-  headerImage: {
+  headerImageBox: {
     width: "95%",
     paddingTop: 20,
-    paddingBottom: 0
+    paddingBottom: 0,
+    flexGrow: 1
+  },
+  headerImage: {
+    width: "100%"
   },
   canvas: {
     height: "100%",
@@ -52,12 +57,13 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-    zIndex: 200
+    // bottom: 0,
+    zIndex: 300
   },
   resultImage: {
     width: "95%",
-    zIndex: 200
+    flexGrow: 1
+    // zIndex: 200
   },
   resultColumn: {
     flex: 1
@@ -264,6 +270,9 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     borderColor: "yellow"
   },
   qrcodeBox: {
+    maxWidth: 768,
+    width: "100%",
+    boxSizing: "border-box",
     padding: "0px 20px 20px"
   },
   qrcode: {
@@ -271,7 +280,6 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     paddingRight: "20px"
   },
   qrcodeTitle: {
-    textAlign: "center",
     paddingTop: 5,
     paddingBottom: 10
   },
@@ -287,7 +295,7 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: 20,
+    // zIndex: 20,
     background: "#D80000"
   }
 });

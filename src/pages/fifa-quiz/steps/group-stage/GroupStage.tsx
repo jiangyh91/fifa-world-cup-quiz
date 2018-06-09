@@ -135,7 +135,7 @@ class GroupStage extends React.PureComponent<Props, States> {
     return <div className={classNames(classes.checkBox, !!value ? classes.checked : classes.unchecked)}>{value}</div>;
   }
   private handleOnTeamClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const groupIndex = Number(dataAttribute("group-index", event) || 0);
     const targetTeamName = dataAttribute("team-name", event) || "";
