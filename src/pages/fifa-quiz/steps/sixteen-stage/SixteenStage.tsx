@@ -57,7 +57,7 @@ class SixteenStage extends React.PureComponent<Props, States> {
             VS
           </Typography> */}
           <FlexLayout className={classes.vsImageBox} justifyContent="space-around">
-            <img src={vsImage} alt="vs" />
+            <img className={classes.vsImage} src={vsImage} alt="vs" />
           </FlexLayout>
           <TeamButtonGroup winnerArray={stageValues} teamsArray={this.teamsArray} onClick={this.handleOnTeamClick} />
           <Button

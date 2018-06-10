@@ -18,8 +18,8 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     "& + $teamButton": {
       borderLeft: `1px solid ${theme.palette.divider}`,
       borderRadius: "8px",
-      borderTopLeftRadius: "unset",
-      borderBottomLeftRadius: "unset"
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0
     }
   },
   checkedButton: {
@@ -27,7 +27,8 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
   },
   teamName: {
     fontSize: 16,
-    flexGrow: 1
+    flexGrow: 1,
+    padding: "5px 0px"
   }
 });
 

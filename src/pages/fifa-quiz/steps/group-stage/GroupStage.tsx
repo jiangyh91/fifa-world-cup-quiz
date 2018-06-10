@@ -125,15 +125,13 @@ class GroupStage extends React.PureComponent<Props, States> {
       >
         <img src={flagMapping[teamName]} alt={teamName} />
         <div className={classes.teamName}>{teamName}</div>
-        {this.renderCheckBox(teamValue)}
+        <div className={classNames(classes.checkBox, !!teamValue ? classes.checked : classes.unchecked)}>
+          {teamValue}
+        </div>
       </ButtonBase>
     );
   }
 
-  private renderCheckBox(value?: string) {
-    const { classes } = this.props;
-    return <div className={classNames(classes.checkBox, !!value ? classes.checked : classes.unchecked)}>{value}</div>;
-  }
   private handleOnTeamClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // event.preventDefault();
 

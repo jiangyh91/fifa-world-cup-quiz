@@ -51,9 +51,12 @@ const styles: StyleRulesCallback<ClassKeys> = (theme: Theme) => ({
     background: theme.palette.common.white
   },
   teamName: {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: "7px 0px"
   },
   checkBox: {
+    marginTop: 7,
+    marginBottom: 7,
     height: 18,
     width: 18,
     marginRight: 6,
