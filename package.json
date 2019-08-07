@@ -9,7 +9,7 @@
     "html2canvas": "^1.0.0-alpha.12",
     "query-string": "^5.1.1",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react-dom": "^16.4.2",
     "react-router-dom": "^4.2.2"
   },
   "scripts": {
